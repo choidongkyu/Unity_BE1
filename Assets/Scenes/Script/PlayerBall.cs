@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBall : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerBall : MonoBehaviour
     public int score = 0;
     private bool isJump;
     private AudioSource audio;
+    public GameManagerLogic manager;
 
     void Awake()
     {
@@ -48,6 +50,17 @@ public class PlayerBall : MonoBehaviour
             audio.Play();
             other.gameObject.SetActive(false);
             score++;
+        }
+
+        if (other.tag == "Goal")
+        {
+            if(manager.totalItemCount == score)
+            {
+                SceneManager.LoadScene("SampleScene");
+            } else
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
         }
     }
 }
